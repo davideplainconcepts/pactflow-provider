@@ -1,17 +1,23 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-const dotenv = require('dotenv').config()v)
-
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}/${process.env.MONGO_DATABASE}`;
+import {
+  PlanetController,
+} from './controllers/planet.controller';
+import {
+  AppController,
+} from './controllers/app.controller';
+import { DataServicesModule } from './service/data-service.module';
+import { PlanetUseCasesModule } from './use-cases/planet/planet.use-cases.module'
 
 
 @Module({
   imports: [
-    MongooseModule.forRoot(uri),
+    DataServicesModule,
+    PlanetUseCasesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController,
+    PlanetController
+  ],
+  providers: [],
 })
 export class AppModule {}
