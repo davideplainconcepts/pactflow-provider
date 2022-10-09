@@ -1,5 +1,4 @@
-export interface Planet {
-    id: string;
+export class Planet {
     name: string;
     orderFromSun: number;
     hasRings: boolean;
